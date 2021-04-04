@@ -33,6 +33,10 @@ namespace Review
 
         public string GetFullName()
         {
+            if (string.IsNullOrWhiteSpace(LastName))
+            {
+                return Name;
+            }
             var fullName = $"{Name} {LastName}";
             if (fullName.Length > MaximumFullNameLength)
             {
