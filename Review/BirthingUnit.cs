@@ -6,11 +6,12 @@ namespace Review
 {
     public class BirthingUnit
     {
+        private readonly IRandomNumberGenerator _randomNumberGenerator;
         private readonly List<People> _people;
-        private static readonly Random RandomNumberGenerator = new Random(); 
 
-        public BirthingUnit()
+        public BirthingUnit(IRandomNumberGenerator randomNumberGenerator)
         {
+            _randomNumberGenerator = randomNumberGenerator;
             _people = new List<People>();
         }
 
@@ -22,14 +23,14 @@ namespace Review
                 {
                     // Creates a dandon Name
                     string name = string.Empty;
-                    if (RandomNumberGenerator.Next(0, 2) == 0) {
+                    if (_randomNumberGenerator.GenerateRandomNumber(0, 2) == 0) {
                         name = "Bob";
                     }
                     else {
                         name = "Betty";
                     }
                     // Adds new people to the list
-                    _people.Add(new People(name, DateTime.UtcNow.Subtract(new TimeSpan(RandomNumberGenerator.Next(18, 85) * 356, 0, 0, 0))));
+                    _people.Add(new People(name, DateTime.UtcNow.Subtract(new TimeSpan(_randomNumberGenerator.GenerateRandomNumber(18, 85) * 356, 0, 0, 0))));
                 }
                 catch (Exception e)
                 {
