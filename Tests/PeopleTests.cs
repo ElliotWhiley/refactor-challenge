@@ -15,7 +15,7 @@ namespace Tests
         {
             var person = new People("Tester");
             var fullName = person.GetMarried( "Smith");
-            Assert.True(fullName == $"{person.Name} Smith");
+            Assert.True(fullName == $"{person.FirstName} Smith");
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace Tests
         {
             var person = new People("Tester");
             var fullName = person.GetMarried("test");
-            Assert.True(fullName == person.Name);
+            Assert.True(fullName == person.FirstName);
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace Tests
             var person = new People("Tester");
             person.GetMarried( "Smith");
             Assert.True(person.LastName == "Smith");
-            Assert.True(person.GetFullName() == $"{person.Name} Smith");
+            Assert.True(person.GetFullName() == $"{person.FirstName} Smith");
         }
     }
 }

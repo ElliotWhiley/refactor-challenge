@@ -42,7 +42,7 @@ namespace Review
 
         private IEnumerable<People> GetBobs(bool olderThan30)
         {
-            return olderThan30 ? _people.Where(x => x.Name == "Bob" && x.DateOfBirth >= DateTime.Now.Subtract(new TimeSpan(30 * 356, 0, 0, 0))) : _people.Where(x => x.Name == "Bob");
+            return olderThan30 ? _people.Where(x => x.FirstName == "Bob" && x.DateOfBirth >= DateTime.Now.Subtract(new TimeSpan(30 * 356, 0, 0, 0))) : _people.Where(x => x.FirstName == "Bob");
         }
     }
 }

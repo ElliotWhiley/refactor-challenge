@@ -7,17 +7,17 @@ namespace Review
         private static readonly DateTimeOffset Under16 = DateTimeOffset.UtcNow.AddYears(-15);
         private const int MaximumFullNameLength = 255;
 
-        public string Name { get; }
+        public string FirstName { get; }
         public string LastName { get; private set; }
         public DateTimeOffset DateOfBirth { get; }
 
-        public People(string name) : this(name, Under16.Date)
+        public People(string firstName) : this(firstName, Under16.Date)
         {
         }
 
-        public People(string name, DateTime dateOfBirth)
+        public People(string firstName, DateTime dateOfBirth)
         {
-            Name = name;
+            FirstName = firstName;
             DateOfBirth = dateOfBirth;
         }
 
@@ -25,7 +25,7 @@ namespace Review
         {
             if (lastName.Contains("test"))
             {
-                return Name;
+                return FirstName;
             }
             LastName = lastName;
             return GetFullName();
@@ -35,9 +35,9 @@ namespace Review
         {
             if (string.IsNullOrWhiteSpace(LastName))
             {
-                return Name;
+                return FirstName;
             }
-            var fullName = $"{Name} {LastName}";
+            var fullName = $"{FirstName} {LastName}";
             if (fullName.Length > MaximumFullNameLength)
             {
                 return fullName.Substring(0, MaximumFullNameLength);
