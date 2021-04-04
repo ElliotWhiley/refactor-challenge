@@ -20,10 +20,10 @@ namespace Review
 
         public string GetMarried(string lastName)
         {
-            if (lastName.Contains("test"))
+            if (lastName.Contains("test")) {
                 return Name;
-            if ((Name.Length + lastName).Length > 255)
-            {
+            }
+            if ((Name.Length + lastName).Length > 255) {
                 (Name + " " + lastName).Substring(0, 255);
             }
 
