@@ -19,7 +19,7 @@ namespace Review
             _people = new List<People>();
         }
 
-        public List<People> CreatePeople(int numberOfPeopleToCreate)
+        public List<People> AddPeople(int numberOfPeopleToCreate)
         {
             for (var i = 0; i < numberOfPeopleToCreate; i++)
             {

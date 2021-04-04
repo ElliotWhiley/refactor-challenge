@@ -21,10 +21,10 @@ namespace Tests
         }
 
         [Fact]
-        public void GetPeopleCreatesBirthingUnitMembersWithNameAndDateOfBirth()
+        public void AddPeopleCreatesBirthingUnitMembersWithNameAndDateOfBirth()
         {
             _randomNumberGeneratorMock.Setup(x => x.GenerateRandomNumber(18, 85)).Returns(50);
-            var birthingUnitMembers = _birthingUnit.CreatePeople(5);
+            var birthingUnitMembers = _birthingUnit.AddPeople(5);
             Assert.True(birthingUnitMembers.Count == 5);
             Assert.All(birthingUnitMembers, member => Assert.True(member.FirstName == "Bob"));
             Assert.All(birthingUnitMembers, member => Assert.True(member.DateOfBirth == new DateTime(1951, 4, 8)));
@@ -33,9 +33,9 @@ namespace Tests
         [Theory]
         [InlineData(0)]
         [InlineData(-5)]
-        public void GetPeopleWithZeroOrLessInputReturnsNoBirthingUnitMembers(int numberOfBirthingUnitMembers)
+        public void AddPeopleWithZeroOrLessInputReturnsNoBirthingUnitMembers(int numberOfBirthingUnitMembers)
         {
-            var birthingUnitMembers = _birthingUnit.CreatePeople(numberOfBirthingUnitMembers);
+            var birthingUnitMembers = _birthingUnit.AddPeople(numberOfBirthingUnitMembers);
             Assert.True(birthingUnitMembers.Count == 0);
         }
 
@@ -43,9 +43,9 @@ namespace Tests
         public void GetBobsReturnsBirthingUnitMembersNamedBob()
         {
             SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(35);
-            _birthingUnit.CreatePeople(7);
+            _birthingUnit.AddPeople(7);
             SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(25);
-            var birthingUnitMembers = _birthingUnit.CreatePeople(3);
+            var birthingUnitMembers = _birthingUnit.AddPeople(3);
             var birthingUnitMembersNamedBobYoungerThanThirty = _birthingUnit.GetBobs(false);
             Assert.True(birthingUnitMembers.Count == 10);
             Assert.True(birthingUnitMembersNamedBobYoungerThanThirty.Count() == 10);
@@ -55,9 +55,9 @@ namespace Tests
         public void GetBobsReturnsBirthingUnitMembersNamedBobOld()
         {
             SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(35);
-            _birthingUnit.CreatePeople(7);
+            _birthingUnit.AddPeople(7);
             SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(25);
-            var birthingUnitMembers = _birthingUnit.CreatePeople(3);
+            var birthingUnitMembers = _birthingUnit.AddPeople(3);
             var birthingUnitMembersNamedBobYoungerThanThirty = _birthingUnit.GetBobsOld(false);
             Assert.True(birthingUnitMembers.Count == 10);
             Assert.True(birthingUnitMembersNamedBobYoungerThanThirty.Count() == 10);
@@ -67,9 +67,9 @@ namespace Tests
         public void GetBobsOlderThanThirtyReturnsBirthingUnitMembersNamedBobOverAgeOfThirty()
         {
             SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(35);
-            _birthingUnit.CreatePeople(7);
+            _birthingUnit.AddPeople(7);
             SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(25);
-            var birthingUnitMembers = _birthingUnit.CreatePeople(3);
+            var birthingUnitMembers = _birthingUnit.AddPeople(3);
             var birthingUnitMembersNamedBobOlderThanThirty = _birthingUnit.GetBobs(true);
             Assert.True(birthingUnitMembers.Count == 10);
             Assert.True(birthingUnitMembersNamedBobOlderThanThirty.Count() == 3);
@@ -79,9 +79,9 @@ namespace Tests
         public void GetBobsOlderThanThirtyReturnsBirthingUnitMembersNamedBobOverAgeOfThirtyOld()
         {
             SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(35);
-            _birthingUnit.CreatePeople(7);
+            _birthingUnit.AddPeople(7);
             SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(25);
-            var birthingUnitMembers = _birthingUnit.CreatePeople(3);
+            var birthingUnitMembers = _birthingUnit.AddPeople(3);
             var birthingUnitMembersNamedBobOlderThanThirty = _birthingUnit.GetBobsOld(true);
             Assert.True(birthingUnitMembers.Count == 10);
             Assert.True(birthingUnitMembersNamedBobOlderThanThirty.Count() == 3);
@@ -90,7 +90,7 @@ namespace Tests
         [Fact]
         public void GetMembersByPredicateReturnsBirthingUnitMembers()
         {
-            _birthingUnit.CreatePeople(5);
+            _birthingUnit.AddPeople(5);
             var birthingUnitMembersStartingWithLetterB = _birthingUnit.GetMembersByPredicate(x => x.FirstName.StartsWith('B'));
             Assert.True(birthingUnitMembersStartingWithLetterB.Count() == 5);
         }
