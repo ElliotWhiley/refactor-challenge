@@ -64,6 +64,10 @@ namespace Review
                 ? _people.Where(x => x.FirstName == "Bob" && x.DateOfBirth >= _clock.Now().AddYears(-30))
                 : _people.Where(x => x.FirstName == "Bob");
         }
+
+        public IEnumerable<People> GetMembersByPredicate(Func<People, bool> predicate)
+        {
+            return _people.Where(predicate);
         }
     }
 }

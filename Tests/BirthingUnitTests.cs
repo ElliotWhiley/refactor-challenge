@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Moq;
 using Review;
 using Xunit;
@@ -83,6 +85,14 @@ namespace Tests
             var birthingUnitMembersNamedBobOlderThanThirty = _birthingUnit.GetBobsOld(true);
             Assert.True(birthingUnitMembers.Count == 10);
             Assert.True(birthingUnitMembersNamedBobOlderThanThirty.Count() == 3);
+        }
+
+        [Fact]
+        public void GetMembersByPredicateReturnsBirthingUnitMembers()
+        {
+            _birthingUnit.CreatePeople(5);
+            var birthingUnitMembersStartingWithLetterB = _birthingUnit.GetMembersByPredicate(x => x.FirstName.StartsWith('B'));
+            Assert.True(birthingUnitMembersStartingWithLetterB.Count() == 5);
         }
 
         private void SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(int numberOfYears)
