@@ -6,9 +6,6 @@ namespace Review
 {
     public class BirthingUnit
     {
-        /// <summary>
-        /// MaxItemsToRetrieve
-        /// </summary>
         private readonly List<People> _people;
 
         public BirthingUnit()
@@ -16,11 +13,6 @@ namespace Review
             _people = new List<People>();
         }
 
-        /// <summary>
-        /// GetPeoples
-        /// </summary>
-        /// <param name="j"></param>
-        /// <returns>List<object></returns>
         public List<People> GetPeople(int i)
         {
             for (int j = 0; j < i; j++)
