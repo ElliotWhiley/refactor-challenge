@@ -36,5 +36,58 @@ namespace Tests
             var birthingUnitMembers = _birthingUnit.CreatePeople(numberOfBirthingUnitMembers);
             Assert.True(birthingUnitMembers.Count == 0);
         }
+
+        [Fact]
+        public void GetBobsReturnsBirthingUnitMembersNamedBob()
+        {
+            SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(35);
+            _birthingUnit.CreatePeople(7);
+            SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(25);
+            var birthingUnitMembers = _birthingUnit.CreatePeople(3);
+            var birthingUnitMembersNamedBobYoungerThanThirty = _birthingUnit.GetBobs(false);
+            Assert.True(birthingUnitMembers.Count == 10);
+            Assert.True(birthingUnitMembersNamedBobYoungerThanThirty.Count() == 10);
+        }
+
+        [Fact]
+        public void GetBobsReturnsBirthingUnitMembersNamedBobOld()
+        {
+            SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(35);
+            _birthingUnit.CreatePeople(7);
+            SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(25);
+            var birthingUnitMembers = _birthingUnit.CreatePeople(3);
+            var birthingUnitMembersNamedBobYoungerThanThirty = _birthingUnit.GetBobsOld(false);
+            Assert.True(birthingUnitMembers.Count == 10);
+            Assert.True(birthingUnitMembersNamedBobYoungerThanThirty.Count() == 10);
+        }
+
+        [Fact]
+        public void GetBobsOlderThanThirtyReturnsBirthingUnitMembersNamedBobOverAgeOfThirty()
+        {
+            SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(35);
+            _birthingUnit.CreatePeople(7);
+            SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(25);
+            var birthingUnitMembers = _birthingUnit.CreatePeople(3);
+            var birthingUnitMembersNamedBobOlderThanThirty = _birthingUnit.GetBobs(true);
+            Assert.True(birthingUnitMembers.Count == 10);
+            Assert.True(birthingUnitMembersNamedBobOlderThanThirty.Count() == 3);
+        }
+
+        [Fact]
+        public void GetBobsOlderThanThirtyReturnsBirthingUnitMembersNamedBobOverAgeOfThirtyOld()
+        {
+            SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(35);
+            _birthingUnit.CreatePeople(7);
+            SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(25);
+            var birthingUnitMembers = _birthingUnit.CreatePeople(3);
+            var birthingUnitMembersNamedBobOlderThanThirty = _birthingUnit.GetBobsOld(true);
+            Assert.True(birthingUnitMembers.Count == 10);
+            Assert.True(birthingUnitMembersNamedBobOlderThanThirty.Count() == 3);
+        }
+
+        private void SeedRandomNumberGeneratorUsedForGeneratingDateOfBirth(int numberOfYears)
+        {
+            _randomNumberGeneratorMock.Setup(x => x.GenerateRandomNumber(18, 85)).Returns(numberOfYears);
+        }
     }
 }

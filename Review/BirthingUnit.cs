@@ -50,9 +50,20 @@ namespace Review
             return _clock.Now().Subtract(new TimeSpan(_randomNumberGenerator.GenerateRandomNumber(18, 85) * 356, 0, 0, 0));
         }
 
-        private IEnumerable<People> GetBobs(bool olderThan30)
+        [Obsolete("GetBobsOld is deprecated, use GetBobs instead")]
+        public IEnumerable<People> GetBobsOld(bool olderThan30)
         {
-            return olderThan30 ? _people.Where(x => x.FirstName == "Bob" && x.DateOfBirth >= DateTime.Now.Subtract(new TimeSpan(30 * 356, 0, 0, 0))) : _people.Where(x => x.FirstName == "Bob");
+            return olderThan30
+                ? _people.Where(x => x.FirstName == "Bob" && x.DateOfBirth >= _clock.NowOld().Subtract(new TimeSpan(30 * 356, 0, 0, 0)))
+                : _people.Where(x => x.FirstName == "Bob");
+        }
+
+        public IEnumerable<People> GetBobs(bool olderThan30)
+        {
+            return olderThan30
+                ? _people.Where(x => x.FirstName == "Bob" && x.DateOfBirth >= _clock.Now().AddYears(-30))
+                : _people.Where(x => x.FirstName == "Bob");
+        }
         }
     }
 }
