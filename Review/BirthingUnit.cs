@@ -9,7 +9,7 @@ namespace Review
         /// <summary>
         /// MaxItemsToRetrieve
         /// </summary>
-        private List<People> _people;
+        private readonly List<People> _people;
 
         public BirthingUnit()
         {
