@@ -36,7 +36,8 @@ namespace Review
 
         private string CreateFirstName()
         {
-            if (_randomNumberGenerator.GenerateRandomNumber(0, 2) == 0) {
+            if (_randomNumberGenerator.GenerateRandomNumber(0, 2) == 0)
+            {
                 return "Bob";
             }
             return "Betty";
