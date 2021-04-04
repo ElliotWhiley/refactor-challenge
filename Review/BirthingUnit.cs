@@ -15,9 +15,9 @@ namespace Review
             _people = new List<People>();
         }
 
-        public List<People> CreatePeople(int i)
+        public List<People> CreatePeople(int numberOfPeopleToCreate)
         {
-            for (int j = 0; j < i; j++)
+            for (int j = 0; j < numberOfPeopleToCreate; j++)
             {
                 try
                 {
