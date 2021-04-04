@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Serilog;
 
 namespace Review
 {
     public class BirthingUnit
     {
+        private static readonly ILogger _logger = Log.ForContext<BirthingUnit>();
         private readonly IRandomNumberGenerator _randomNumberGenerator;
         private readonly List<People> _people;
 
@@ -25,7 +27,7 @@ namespace Review
                 }
                 catch (Exception e)
                 {
-                    // Dont think this should ever happen
+                    _logger.Error(e, "Failed to create user");
                     throw;
                 }
             }
