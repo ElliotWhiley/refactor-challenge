@@ -8,6 +8,7 @@ namespace Review
         private const int MaximumFullNameLength = 255;
 
         public string Name { get; }
+        public string LastName { get; private set; }
         public DateTimeOffset DateOfBirth { get; }
 
         public People(string name) : this(name, Under16.Date)
@@ -22,15 +23,21 @@ namespace Review
 
         public string GetMarried(string lastName)
         {
-            if (lastName.Contains("test")) {
+            if (lastName.Contains("test"))
+            {
                 return Name;
             }
+            LastName = lastName;
+            return GetFullName();
+        }
 
-            var fullName = $"{Name} {lastName}";
-            if (fullName.Length > MaximumFullNameLength) {
+        public string GetFullName()
+        {
+            var fullName = $"{Name} {LastName}";
+            if (fullName.Length > MaximumFullNameLength)
+            {
                 return fullName.Substring(0, MaximumFullNameLength);
             }
-
             return fullName;
         }
     }
