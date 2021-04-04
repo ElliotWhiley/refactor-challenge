@@ -9,11 +9,13 @@ namespace Review
     {
         private static readonly ILogger _logger = Log.ForContext<BirthingUnit>();
         private readonly IRandomNumberGenerator _randomNumberGenerator;
+        private readonly IClock _clock;
         private readonly List<People> _people;
 
-        public BirthingUnit(IRandomNumberGenerator randomNumberGenerator)
+        public BirthingUnit(IRandomNumberGenerator randomNumberGenerator, IClock clock)
         {
             _randomNumberGenerator = randomNumberGenerator;
+            _clock = clock;
             _people = new List<People>();
         }
 
@@ -43,9 +45,9 @@ namespace Review
             return "Betty";
         }
 
-        private static DateTime CreateDateOfBirth()
+        private DateTime CreateDateOfBirth()
         {
-            return DateTime.UtcNow.Subtract(new TimeSpan(new Random().Next(18, 85) * 356, 0, 0, 0));
+            return _clock.Now().Subtract(new TimeSpan(_randomNumberGenerator.GenerateRandomNumber(18, 85) * 356, 0, 0, 0));
         }
 
         private IEnumerable<People> GetBobs(bool olderThan30)

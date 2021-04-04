@@ -4,14 +4,13 @@ namespace Review
 {
     public class People
     {
-        private static readonly DateTimeOffset Under16 = DateTimeOffset.UtcNow.AddYears(-15);
         private const int MaximumFullNameLength = 255;
 
         public string FirstName { get; }
         public string LastName { get; private set; }
         public DateTimeOffset DateOfBirth { get; }
 
-        public People(string firstName) : this(firstName, Under16.Date)
+        public People(string firstName, IClock clock) : this(firstName, clock.FifteenYearsAgo())
         {
         }
 
