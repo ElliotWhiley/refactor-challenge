@@ -41,5 +41,18 @@ namespace Tests
             var fullName = person.GetMarried("test");
             Assert.True(fullName == person.Name);
         }
+
+        [Fact]
+        public void GetMarriedWithLongLastNameReturnsTrimmedFullName()
+        {
+            var birthingUnit = new BirthingUnit();
+            var person = birthingUnit.GetPeople(1).Single();
+            const string longLastNameWith256Characters = "Loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" +
+                                                         "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" +
+                                                         "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo" +
+                                                         "oooooooooooooooooooooong";
+            var fullName = person.GetMarried(longLastNameWith256Characters);
+            Assert.True(fullName.Length == 255);
+        }
     }
 }
