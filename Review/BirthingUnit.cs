@@ -17,7 +17,7 @@ namespace Review
 
         public List<People> CreatePeople(int numberOfPeopleToCreate)
         {
-            for (int j = 0; j < numberOfPeopleToCreate; j++)
+            for (var i = 0; i < numberOfPeopleToCreate; i++)
             {
                 try
                 {
