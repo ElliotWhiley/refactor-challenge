@@ -7,6 +7,7 @@ namespace Review
     public class BirthingUnit
     {
         private readonly List<People> _people;
+        private static readonly Random RandomNumberGenerator = new Random(); 
 
         public BirthingUnit()
         {
@@ -21,15 +22,14 @@ namespace Review
                 {
                     // Creates a dandon Name
                     string name = string.Empty;
-                    var random = new Random();
-                    if (random.Next(0, 1) == 0) {
+                    if (RandomNumberGenerator.Next(0, 1) == 0) {
                         name = "Bob";
                     }
                     else {
                         name = "Betty";
                     }
                     // Adds new people to the list
-                    _people.Add(new People(name, DateTime.UtcNow.Subtract(new TimeSpan(random.Next(18, 85) * 356, 0, 0, 0))));
+                    _people.Add(new People(name, DateTime.UtcNow.Subtract(new TimeSpan(RandomNumberGenerator.Next(18, 85) * 356, 0, 0, 0))));
                 }
                 catch (Exception e)
                 {
