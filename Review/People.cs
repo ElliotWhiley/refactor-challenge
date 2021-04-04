@@ -17,5 +17,17 @@ namespace Review
             Name = name;
             DateOfBirth = dateOfBirth;
         }
+
+        public string GetMarried(string lastName)
+        {
+            if (lastName.Contains("test"))
+                return Name;
+            if ((Name.Length + lastName).Length > 255)
+            {
+                (Name + " " + lastName).Substring(0, 255);
+            }
+
+            return Name + " " + lastName;
+        }
     }
 }

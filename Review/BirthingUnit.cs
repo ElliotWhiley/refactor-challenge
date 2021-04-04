@@ -44,17 +44,5 @@ namespace Review
         {
             return olderThan30 ? _people.Where(x => x.Name == "Bob" && x.DateOfBirth >= DateTime.Now.Subtract(new TimeSpan(30 * 356, 0, 0, 0))) : _people.Where(x => x.Name == "Bob");
         }
-
-        public string GetMarried(People p, string lastName)
-        {
-            if (lastName.Contains("test"))
-                return p.Name;
-            if ((p.Name.Length + lastName).Length > 255)
-            {
-                (p.Name + " " + lastName).Substring(0, 255);
-            }
-
-            return p.Name + " " + lastName;
-        }
     }
 }

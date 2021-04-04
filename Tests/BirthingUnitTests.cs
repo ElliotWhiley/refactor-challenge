@@ -29,7 +29,7 @@ namespace Tests
         {
             var birthingUnit = new BirthingUnit();
             var person = birthingUnit.GetPeople(1).Single();
-            var fullName = birthingUnit.GetMarried(person, "Smith");
+            var fullName = person.GetMarried( "Smith");
             Assert.True(fullName == $"{person.Name} Smith");
         }
 
@@ -38,7 +38,7 @@ namespace Tests
         {
             var birthingUnit = new BirthingUnit();
             var person = birthingUnit.GetPeople(1).Single();
-            var fullName = birthingUnit.GetMarried(person, "test");
+            var fullName = person.GetMarried("test");
             Assert.True(fullName == person.Name);
         }
     }
