@@ -19,7 +19,7 @@ namespace Tests
         public void GetPeopleCreatesBirthingUnitMembersWithNames()
         {
             var birthingUnit = new BirthingUnit(_randomNumberGenerator);
-            var birthingUnitMembers = birthingUnit.GetPeople(5);
+            var birthingUnitMembers = birthingUnit.CreatePeople(5);
             Assert.True(birthingUnitMembers.Count == 5);
             Assert.All(birthingUnitMembers, member => Assert.True(member.FirstName == "Bob"));
         }
@@ -30,7 +30,7 @@ namespace Tests
         public void GetPeopleWithZeroOrLessInputReturnsNoBirthingUnitMembers(int numberOfBirthingUnitMembers)
         {
             var birthingUnit = new BirthingUnit(_randomNumberGenerator);
-            var birthingUnitMembers = birthingUnit.GetPeople(numberOfBirthingUnitMembers);
+            var birthingUnitMembers = birthingUnit.CreatePeople(numberOfBirthingUnitMembers);
             Assert.True(birthingUnitMembers.Count == 0);
         }
     }

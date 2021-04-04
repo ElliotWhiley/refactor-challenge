@@ -15,7 +15,7 @@ namespace Review
             _people = new List<People>();
         }
 
-        public List<People> GetPeople(int i)
+        public List<People> CreatePeople(int i)
         {
             for (int j = 0; j < i; j++)
             {
