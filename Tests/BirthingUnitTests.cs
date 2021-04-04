@@ -22,13 +22,5 @@ namespace Tests
             var birthingUnitMembers = birthingUnit.GetPeople(numberOfBirthingUnitMembers);
             Assert.True(birthingUnitMembers.Count == 0);
         }
-
-        [Fact]
-        public void GetPeopleCreatesBirthingUnitMembersAllNamedBob()
-        {
-            var birthingUnit = new BirthingUnit();
-            var birthingUnitMembers = birthingUnit.GetPeople(10000);
-            Assert.All(birthingUnitMembers, item => Assert.True(item.Name == "Bob"));
-        }
     }
 }

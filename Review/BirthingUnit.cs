@@ -22,7 +22,7 @@ namespace Review
                 {
                     // Creates a dandon Name
                     string name = string.Empty;
-                    if (RandomNumberGenerator.Next(0, 1) == 0) {
+                    if (RandomNumberGenerator.Next(0, 2) == 0) {
                         name = "Bob";
                     }
                     else {
