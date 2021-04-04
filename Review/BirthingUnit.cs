@@ -21,16 +21,7 @@ namespace Review
             {
                 try
                 {
-                    // Creates a dandon Name
-                    string name = string.Empty;
-                    if (_randomNumberGenerator.GenerateRandomNumber(0, 2) == 0) {
-                        name = "Bob";
-                    }
-                    else {
-                        name = "Betty";
-                    }
-                    // Adds new people to the list
-                    _people.Add(new People(name, DateTime.UtcNow.Subtract(new TimeSpan(_randomNumberGenerator.GenerateRandomNumber(18, 85) * 356, 0, 0, 0))));
+                    _people.Add(new People(CreateFirstName(), CreateDateOfBirth()));
                 }
                 catch (Exception e)
                 {
@@ -39,6 +30,19 @@ namespace Review
                 }
             }
             return _people;
+        }
+
+        private string CreateFirstName()
+        {
+            if (_randomNumberGenerator.GenerateRandomNumber(0, 2) == 0) {
+                return "Bob";
+            }
+            return "Betty";
+        }
+
+        private static DateTime CreateDateOfBirth()
+        {
+            return DateTime.UtcNow.Subtract(new TimeSpan(new Random().Next(18, 85) * 356, 0, 0, 0));
         }
 
         private IEnumerable<People> GetBobs(bool olderThan30)
