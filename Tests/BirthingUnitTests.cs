@@ -1,5 +1,5 @@
 using System.Linq;
-using CodingAssessment.Review;
+using Review;
 using Xunit;
 
 namespace Tests

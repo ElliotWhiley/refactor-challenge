@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Review;
 
-namespace CodingAssessment.Review
+namespace Review
 {
     public class BirthingUnit
     {
